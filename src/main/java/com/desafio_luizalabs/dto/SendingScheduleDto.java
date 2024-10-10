@@ -23,4 +23,14 @@ public class SendingScheduleDto {
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private LocalDateTime dateAndTimeOfSubmission;
+
+    @Override
+    public String toString() {
+        return "SendingScheduleDto{" +
+                "message='" + message + '\'' +
+                ", recipient='" + recipient + '\'' +
+                ", recipientType='" + recipientType + '\'' +
+                ", dateAndTimeOfSubmission=" + dateAndTimeOfSubmission +
+                '}';
+    }
 }
