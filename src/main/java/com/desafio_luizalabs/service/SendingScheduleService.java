@@ -5,7 +5,7 @@ import com.desafio_luizalabs.dto.SendingScheduleStatusDto;
 import org.apache.coyote.BadRequestException;
 
 public interface SendingScheduleService {
-    void sendingSchedule(SendingScheduleDto sendingScheduleDto);
+    void sendingSchedule(SendingScheduleDto sendingScheduleDto) throws BadRequestException;
 
     SendingScheduleStatusDto getSendingScheduleStatus(Integer id) throws BadRequestException;
 

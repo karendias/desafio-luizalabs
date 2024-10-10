@@ -30,33 +30,28 @@ public class SendingScheduleServiceImpl implements SendingScheduleService {
     private final String ERROR_REGISTER_NOT_FOUND = "Registro não encontrado";
 
     @Override
-    public void sendingSchedule(SendingScheduleDto sendingScheduleDto) {
+    public void sendingSchedule(SendingScheduleDto sendingScheduleDto) throws BadRequestException {
         ArrayList<String> possibleRecipientTypes = new ArrayList<>(Arrays.asList("email", "phone"));
         boolean isValidRecipientType = possibleRecipientTypes.contains(sendingScheduleDto.getRecipientType());
 
-        try {
-            if (isValidRecipientType) {
-                SendingScheduleEntity sendingSchedule = SendingScheduleEntity.builder()
-                        .message(sendingScheduleDto.getMessage())
-                        .recipient(sendingScheduleDto.getRecipient())
-                        .recipientType(sendingScheduleDto.getRecipientType())
-                        .status(String.valueOf(Status.PENDING))
-                        .dateTimeSubmission(sendingScheduleDto.getDateAndTimeOfSubmission())
-                        .build();
 
-                sendingScheduleRepository.save(sendingSchedule);
+        if (isValidRecipientType) {
+            SendingScheduleEntity sendingSchedule = SendingScheduleEntity.builder()
+                    .message(sendingScheduleDto.getMessage())
+                    .recipient(sendingScheduleDto.getRecipient())
+                    .recipientType(sendingScheduleDto.getRecipientType())
+                    .status(String.valueOf(Status.PENDING))
+                    .dateTimeSubmission(sendingScheduleDto.getDateAndTimeOfSubmission())
+                    .build();
 
-                rabbitMQProducer.sendMessage(sendingSchedule);
+            sendingScheduleRepository.save(sendingSchedule);
 
-            } else {
-                String NOT_POSSIBLE_SAVE_REGISTER = "O tipo de envio não é válido";
-                throw new BadRequestException(NOT_POSSIBLE_SAVE_REGISTER);
-            }
+            rabbitMQProducer.sendMessage(sendingSchedule);
 
-        } catch (Exception e) {
-            log.error(e.getMessage());
+        } else {
+            String NOT_POSSIBLE_SAVE_REGISTER = "O tipo de envio não é válido";
+            throw new BadRequestException(NOT_POSSIBLE_SAVE_REGISTER);
         }
-
     }
 
     @Override

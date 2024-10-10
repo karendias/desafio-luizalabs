@@ -16,7 +16,7 @@ public class SendingScheduleApiImpl extends AbstractApi implements SendingSchedu
     private SendingScheduleService sendingScheduleService;
 
     @Override
-    public ResponseEntity<Void> sendingSchedule(SendingScheduleDto sendingScheduleDto) {
+    public ResponseEntity<Void> sendingSchedule(SendingScheduleDto sendingScheduleDto) throws BadRequestException {
        sendingScheduleService.sendingSchedule(sendingScheduleDto);
 
        return ResponseEntity.noContent().build();

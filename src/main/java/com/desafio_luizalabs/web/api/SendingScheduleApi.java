@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public interface SendingScheduleApi {
 
     @PostMapping("/")
-    ResponseEntity<Void> sendingSchedule(@RequestBody SendingScheduleDto sendingScheduleDto);
+    ResponseEntity<Void> sendingSchedule(@RequestBody SendingScheduleDto sendingScheduleDto) throws BadRequestException;
 
     @GetMapping("/{id}")
     ResponseEntity<SendingScheduleStatusDto> getSendingSchedule(@PathVariable("id") Integer id) throws BadRequestException;
