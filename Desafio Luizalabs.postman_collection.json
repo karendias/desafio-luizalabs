@@ -1,0 +1,46 @@
+{
+	"info": {
+		"_postman_id": "6837bb4d-0638-4cc0-8148-baabc58efdfd",
+		"name": "Desafio Luizalabs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "13410015"
+	},
+	"item": [
+		{
+			"name": "Cria um agendamento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\r\n    \"recipient\": \"hhb\",\r\n    \"recipientType\": \"email\",\r\n    \"message\": \"message\",\r\n    \"dateAndTimeOfSubmission\": \"2024-09-10 11:40:40\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "http://localhost:8080/sending-schedule/"
+			},
+			"response": []
+		},
+		{
+			"name": "Consulta o status do agendamento",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/sending-schedule/9"
+			},
+			"response": []
+		},
+		{
+			"name": "Cancela um agendamento",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"url": "http://localhost:8080/sending-schedule/9"
+			},
+			"response": []
+		}
+	]
+}
