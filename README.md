@@ -21,7 +21,17 @@ Do que você vai precisar:
 
 **Para testar a api, importe a collection no Postman**
 
-## ⚙️ Executando os testes
+## ⚙️ Como funciona
+
+* Endpoint *Cria um agendamento* : ao chamar este endpoint, será salvo no banco os dados passados no mesmo e enviado para a fila com o status *pending*. Após o processamento da fila, o status será atualizado para *sent*.
+
+
+* Endpoint *Consulta o status do agendamento* : este endpoint consulta o status de um agendamento através de seu id.
+
+
+* Endpoint *Cancela um agendamento*: para cancelar um agendamento, envie o id neste endpoint. O agendamento só será cancelado caso o status de envio seja igual a *pending*.
+
+## 🧪 Executando os testes
 
 Para executar os testes, execute o arquivo **src/test/java/com/desafio_luizalabs/SendingScheduleServiceImplTest.java**
 
